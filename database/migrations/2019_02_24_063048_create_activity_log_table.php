@@ -4,14 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * CreateActivityLogTable
+ */
 class CreateActivityLogTable extends Migration
 {
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create(config('activitylog.table_name'), function (Blueprint $table) {
+        Schema::create(config('activitylog.table_name'), static function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->string('log_name')->nullable();
             $table->text('description');
@@ -29,7 +32,7 @@ class CreateActivityLogTable extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists(config('activitylog.table_name'));
     }

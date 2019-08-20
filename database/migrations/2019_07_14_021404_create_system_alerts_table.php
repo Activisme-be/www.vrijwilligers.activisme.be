@@ -16,7 +16,7 @@ class CreateSystemAlertsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('system_alerts', function (Blueprint $table): void {
+        Schema::create('system_alerts', static function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('creator_id')->nullable();
             $table->foreign('creator_id')->references('id')->on('users')->onDelete('set null');

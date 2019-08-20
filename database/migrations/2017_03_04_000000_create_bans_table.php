@@ -23,9 +23,9 @@ class CreateBansTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('bans', function (Blueprint $table) {
+        Schema::create('bans', static function (Blueprint $table): void {
             $table->BigIncrements('id');
             $table->morphs('bannable');
             $table->nullableMorphs('created_by');
@@ -43,7 +43,7 @@ class CreateBansTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('bans');
     }
