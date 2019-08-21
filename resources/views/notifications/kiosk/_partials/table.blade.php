@@ -35,6 +35,9 @@
                     </td>
                 </tr>
             @empty {{-- No notification are found --}}
+                <tr>
+                    <td colspan="5" class="text-secondary">Er zijn geen systeem notificaties gevonden.</td>
+                </tr>
             @endforelse {{-- /// END notification loop --}}
         </tbody>
     </table> 
