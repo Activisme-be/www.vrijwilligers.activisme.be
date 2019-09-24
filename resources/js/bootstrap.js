@@ -20,7 +20,6 @@ try {
  */
 
 window.axios = require('axios');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
@@ -39,3 +38,12 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/**
+ * 3th party scripts
+ */
+$(document).ready(function() {
+    $('div.alert').not('.alert-important').delay(4200).fadeOut(350, function() {
+        $(this).alert('close');
+    });
+});
