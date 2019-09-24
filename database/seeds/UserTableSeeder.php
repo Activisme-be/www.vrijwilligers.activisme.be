@@ -103,7 +103,7 @@ class UserTableSeeder extends Seeder
         $firstName = $firstName ?: $this->faker()->firstName();
         $lastName = $lastName ?: $this->faker()->lastName;
 
-        $email = strtolower($firstName) . '.' . strtolower($lastName) . '@activisme.be';
+        $email = strtolower($firstName) . '.' . strtolower($lastName) . '@' . config('mail.host');
 
         return compact('firstName', 'lastName', 'email');
     }
