@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
         collect($this->organisationMembers())->each(function (array $name): void {
             [$firstName, $lastName] = $name;
 
-            $data = ['voornaam' => $name[0], 'achternaam' => $name[1], 'email' => strtolower($name[0]) . '@activisme.be', 'password' => 'password'];
+            $data = ['voornaam' => $name[0], 'achternaam' => $name[1], 'email' => strtolower($name[0]) . '@' . config('mail.host'), 'password' => 'password'];
             $user = $this->createBackUser($data);
 
             if ($this->isInWebmasterArray($user->email)) {
@@ -37,6 +37,7 @@ class UserTableSeeder extends Seeder
     /**
      * Determine if the given address is an webmaster in the application.
      *
+     * @string $email The given email address to look for.
      * @return bool
      */
     protected function isInWebmasterArray(string $email): bool
@@ -51,7 +52,7 @@ class UserTableSeeder extends Seeder
      */
     protected function organisationWebmasters(): array
     {
-        return ['tim@activisme.be'];
+        return ['tim@' . config('mail.host')];
     }
 
     /**
@@ -77,7 +78,7 @@ class UserTableSeeder extends Seeder
         $person = $this->fakerPerson();
         $data = ['voornaam' => $person['firstName'], 'achternaam' => $person['lastName'], 'email' => $person['email'], 'email_verified_at' => now(), 'password' => $this->faker()->password];
 
-        return User::create(array_merge($attributes, $data));
+        return User::create($attributes + $data);
     }
 
     /**
