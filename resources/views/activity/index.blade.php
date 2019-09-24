@@ -22,8 +22,11 @@
                     </div>
                 @endif
 
-                <form method="GET" action="{{ route('audit.search') }}" class="border-0 shadow-sm form-search ml-2">
-                    <input type="text" name="term" value="{{ request()->get('term') }}" placeholder="Zoeken" class="form-search border-0 form-control">
+                <form method="GET" action="{{ route('audit.search') }}" class="border-0 shadow-sm form-search form-inline ml-2">
+                    <div class="form-group has-search">
+                        <span class="fe fe-search form-control-feedback"></span>
+                        <input type="text" name="term" value="{{ request()->get('term') }}" placeholder="Zoeken" class="form-search border-0 form-control">
+                    </div>
                 </form>
             </div>
         </div>

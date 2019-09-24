@@ -23,8 +23,11 @@
                     </div>
                 </div>
 
-                <form method="GET" action="{{ route('users.search') }}" class="border-0 shadow-sm form-search ml-2">
-                    <input type="text" class="form-search border-0 form-control" @input('term') placeholder="Zoeken">
+                <form method="GET" action="{{ route('users.search') }}" class="border-0 shadow-sm form-search form-inline ml-2">
+                    <div class="form-group has-search">
+                        <span class="fe fe-search form-control-feedback"></span>
+                        <input type="text" name="term" value="{{ request()->get('term') }}" placeholder="Zoeken" class="form-search border-0 form-control">
+                    </div>
                 </form>
             </div>
         </div>
@@ -33,7 +36,7 @@
     <div class="container-fluid pb-3">
         <div class="card border-0 shadow-sm card-body">
             @include ('flash::message') {{-- Flash session view partial --}}
-            
+
             <div class="table-responsive">
                 <table class="table table-sm mb-0">
                     <thead>
@@ -51,7 +54,7 @@
                             <tr>
                                 <td><strong>#{{ $user->id }}</strong></td>
                                 <td>{{ $user->name }}</td>
-                                
+
                                 <td> {{-- Status  indicator --}}
                                     @if ($user->isBanned()) {{-- The login is non active in the application --}}
                                         <span class="badge badge-warning"><i class="fe fe-lock mr-1"></i> non-actief</span>
@@ -59,7 +62,7 @@
                                         @if ($user->isOnline())
                                             <span class="badge badge-success">Online</span>
                                         @else
-                                            <span class="badge badge-danger">Offline</span> 
+                                            <span class="badge badge-danger">Offline</span>
                                         @endif
                                     @endif
                                 </td> {{-- // End status indicator --}}
@@ -77,11 +80,11 @@
                                             <a href="{{ route('users.lock', $user) }}" class="text-decoration-none mr-1 text-danger @if ($currentUser->cannot('deactivate-user', $user)) disabled @endif">
                                                 <i class="fe fe-lock"></i>
                                             </a>
-                                        @elseif ($user->isBanned()) {{-- The user is locked in the application --}} 
+                                        @elseif ($user->isBanned()) {{-- The user is locked in the application --}}
                                             <a href="{{ route('users.unlock', $user) }}" class="mr-1 @if ($currentUser->cannot('activate-user', $user)) disabled @endif text-decoration-none text-success">
                                                 <i class="fe fe-unlock"></i>
                                             </a>
-                                        @endif {{-- /// END lock check --}}                    
+                                        @endif {{-- /// END lock check --}}
 
                                         <a href="{{ route('users.destroy', $user) }}" class="mr-1 text-decoration-none text-danger">
                                             <i class="fe fe-trash-2"></i>
