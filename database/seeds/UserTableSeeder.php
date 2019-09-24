@@ -64,7 +64,7 @@ class UserTableSeeder extends Seeder
      */
     protected function organisationMembers(): array
     {
-        return [['Tim', 'Joosten'], ['Sara', 'Landuyt'], ['Tom', 'Manheaghe']];
+        return config('platform.default.users');
     }
 
     /**
