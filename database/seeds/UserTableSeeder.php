@@ -37,7 +37,7 @@ class UserTableSeeder extends Seeder
     /**
      * Determine if the given address is an webmaster in the application.
      *
-     * @string $email The given email address to look for.
+     * @param  string $email The given email address to look for.
      * @return bool
      */
     protected function isInWebmasterArray(string $email): bool
