@@ -61,8 +61,9 @@ class PasswordSecurityController extends Controller
 
         if ($repositoryLayer->google2FaLayer()->verifyKey($user->passwordSecurity->google2fa_secret, $secret)) {
             $user->passwordSecurity->update(['google2fa_enable' => true]);
+            $this->twoFactorAuthRepository->generateRecoveryCodes($request);
 
-            return redirect()->route('account.security')->with('success', '2Fa is geactiveerd!');
+            return redirect()->route('account.security')->with('success', '2Fa is geactiveerd! Ook hebben wij je recovery codes toegestuurd per mail.');
         }
 
         return redirect()->route('account.security')->with('error', 'Invalide verificatie code, Probeer het opnieuw!');

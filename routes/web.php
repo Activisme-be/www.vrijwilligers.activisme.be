@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ResetTwoFactorController;
 use App\Http\Controllers\Users\AccountController;
 use App\Http\Controllers\Auth\PasswordSecurityController;
 
@@ -37,6 +38,7 @@ Route::post('/gebruiker/genereer-2fa-token', [PasswordSecurityController::class,
 Route::post('/gebruiker/2fa', [PasswordSecurityController::class, 'enable2fa'])->name('enable2fa');
 Route::post('/gebruiker/deactiveer-2fa', [PasswordSecurityController::class, 'disable2fa'])->name('disable2fa');
 
+Route::get('/2-fa/reset', [ResetTwoFactorController::class, 'index'])->name('2fa.recovery');
 Route::post('/2faVerify', function () {
     return redirect()->route('home');
 })->name('2faVerify')->middleware('2fa');

@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.auth', ['title' => '2 factor authenticatie'])
 
 @section('content')
     <section class="h-100">
@@ -15,19 +15,18 @@
                                 @csrf {{-- Form field protection --}}
 
                                 <div class="form-group">
-                                    <label for="otp" class="sr-only">Verificatie code</label>
+                                    <label for="otp">
+                                        Verificatie code
 
-                                    <input id="otp" type="password" class="form-control {{ $errors->has('one_time_password-code') ? ' is-invalid' : '' }}" name="one_time_password" value="" required autofocus>
+                                        <a href="{{ route('2fa.recovery') }}" class="text-decoration-none float-right">
+                                            Code vergeten?
+                                        </a>
+                                    </label>
 
-                                    @if ($errors->has('one_time_password-code'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('one_time_password-code') }}</strong>
-                                        </span>
-                                    @else
-                                        <small id="otp" class="form-text text-muted pt-2">
-                                            Gebruik de code van je Google Authenticator app om je identiteit te verifieren.
-                                        </small>
-                                    @endif
+                                    <input id="otp" type="password" placeholder="Google Authenticator code" class="form-control {{ $errors->has('one_time_password-code') ? ' is-invalid' : '' }}" name="one_time_password" value="" required autofocus>
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('one_time_password-code') }}</strong>
+                                    </span>
                                 </div>
 
                                 <div class="form-group no-margin">
