@@ -1,29 +1,25 @@
-name: Format (prettier)
+name: Format (PHP)
 
 on:
   pull_request:
     paths:
-    - '**.css'
-    - '**.js'
-    - '**.vue'
+    - '**.php'
 
 jobs:
-  prettier:
+  php-cs-fixer:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
 
     - name: Install
-      run: yarn install
-      env:
-        CI: true
+      run: composer install
 
-    - name: Run prettier
-      run: yarn run prettier --write 'src/**/*.{css,js,vue}'
+    - name: Run php-cs-fixer
+      run: ./vendor/bin/php-cs-fixer fix
 
     - uses: stefanzweifel/git-auto-commit-action@v2.1.0
       with:
-        commit_message: Apply prettier changes
+        commit_message: Apply php-cs-fixer changes
         branch: ${{ github.head_ref }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
