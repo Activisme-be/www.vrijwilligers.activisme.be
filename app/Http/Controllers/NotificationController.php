@@ -15,7 +15,7 @@ class NotificationController extends Controller
     /**
      * The dedicated class for all the notifications logic.
      *
-     * @var NotificationRepository
+     * @var NotificationsRepository
      */
     protected $notificationsRepository;
 
