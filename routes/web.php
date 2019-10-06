@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\TwoFactorResetController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\NotificationController;
@@ -37,6 +38,9 @@ Route::patch('/account/beveiliging', [AccountController::class, 'updateSecurity'
 Route::post('/gebruiker/genereer-2fa-token', [PasswordSecurityController::class, 'generate2faSecret'])->name('generate2faSecret');
 Route::post('/gebruiker/2fa', [PasswordSecurityController::class, 'enable2fa'])->name('enable2fa');
 Route::post('/gebruiker/deactiveer-2fa', [PasswordSecurityController::class, 'disable2fa'])->name('disable2fa');
+Route::get('/2fa-herstel', [TwoFactorResetController::class, 'index'])->name('recovery.2fa');
+Route::post('/2fa-herstel', [TwoFactorResetController::class, 'request'])->name('recovery.2fa.request');
+Route::get('/2fa-reset', [TwoFactorResetController::class, 'handle'])->name('2fa.reset');
 
 Route::get('/2-fa/reset', [ResetTwoFactorController::class, 'index'])->name('2fa.recovery');
 Route::post('/2faVerify', function () {
