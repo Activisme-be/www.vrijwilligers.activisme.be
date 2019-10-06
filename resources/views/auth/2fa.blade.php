@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-@extends('layouts.auth', ['title' => '2 factor authenticatie'])
-=======
 @extends('layouts.auth', ['title' => '2FA authenticatie'])
->>>>>>> 0b6f438edad1ace5566030cf8d0f850df751ff2f
 
 @section('content')
     <section class="h-100">
@@ -22,7 +18,7 @@
                                     <label for="otp">
                                         Verificatie code
 
-                                        <a href="{{ route('2fa.recovery') }}" class="text-decoration-none float-right">
+                                        <a href="{{ route('recovery.2fa') }}" class="text-decoration-none float-right">
                                             Code vergeten?
                                         </a>
                                     </label>
