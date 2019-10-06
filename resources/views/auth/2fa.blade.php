@@ -16,15 +16,14 @@
 
                                 <div class="form-group">
                                     <label for="otp">
-                                        Authenticator code
+                                        Verificatie code
 
                                         <a href="{{ route('recovery.2fa') }}" class="text-decoration-none float-right">
-                                            Smartphone vergeten?
+                                            Code vergeten?
                                         </a>
                                     </label>
 
                                     <input id="otp" type="password" placeholder="Authenticator code" class="form-control {{ $errors->has('one_time_password-code') ? ' is-invalid' : '' }}" name="one_time_password" value="" required autofocus>
-
 
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('one_time_password-code') }}</strong>

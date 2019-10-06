@@ -2,12 +2,12 @@
 
 namespace App\Repositories\TwoFactorAuth;
 
-use App\Models\User;
-use RuntimeException;
-use Illuminate\Http\Response;
 use App\Models\PasswordSecurity;
+use App\Models\User;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Response;
 use PragmaRX\Google2FALaravel\Google2FA;
+use RuntimeException;
 
 /**
  * Class Repository.
@@ -80,6 +80,9 @@ class Repository
 
     /**
      * Method for registering the 2FA secret key in the database.
+     *
+     * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
      *
      * @return PassWordSecurity
      */

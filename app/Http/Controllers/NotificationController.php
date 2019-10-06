@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Contracts\Support\Renderable;
 use App\Repositories\NotificationsRepository;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Notifications\DatabaseNotification;
 
 /**
  * NotificationController.
+ *
+ * @package App\Http\Controllers
  */
 class NotificationController extends Controller
 {

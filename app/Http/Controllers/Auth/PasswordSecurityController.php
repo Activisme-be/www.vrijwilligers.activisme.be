@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\TwoFactorAuth\Repository as TwoFactorAuthRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use App\Repositories\TwoFactorAuth\Repository as TwoFactorAuthRepository;
 
 /**
  * Class PasswordSecurityController.
@@ -37,6 +37,9 @@ class PasswordSecurityController extends Controller
     /**
      * Method for generating the 2Fa secret key.
      *
+     * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
+     *
      * @return RedirectResponse
      */
     public function generate2fasecret(): RedirectResponse
@@ -50,7 +53,11 @@ class PasswordSecurityController extends Controller
     /**
      * Method for activating 2FA on the authenticated user.
      *
-     * @param  Request $request The form request class that contains all the request POST data.
+     * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
+     * @throws \PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException
+     *
+     * @param Request $request The form request class that contains all the request POST data.
      * @return RedirectResponse
      */
     public function enable2fa(Request $request): RedirectResponse
@@ -61,8 +68,9 @@ class PasswordSecurityController extends Controller
 
         if ($repositoryLayer->google2FaLayer()->verifyKey($user->passwordSecurity->google2fa_secret, $secret)) {
             $user->passwordSecurity->update(['google2fa_enable' => true]);
+            $this->twoFactorAuthRepository->generateRecoveryCodes($request);
 
-            return redirect()->route('account.security')->with('success', '2Fa is geactiveerd!');
+            return redirect()->route('account.security')->with('success', '2Fa is geactiveerd! Ook hebben wij je recovery codes toegestuurd per mail.');
         }
 
         return redirect()->route('account.security')->with('error', 'Invalide verificatie code, Probeer het opnieuw!');
@@ -78,7 +86,7 @@ class PasswordSecurityController extends Controller
     {
         $user = auth()->user();
 
-        if (! (Hash::check($request->get('current-password'), $user->password))) {
+        if (! Hash::check($request->get('current-password'), $user->password)) {
             return back()->with('error', 'Het gegeven wachtwoord klopt niet met uw huidige wachtwoord. Probeer het opnieuw.');
         }
 
