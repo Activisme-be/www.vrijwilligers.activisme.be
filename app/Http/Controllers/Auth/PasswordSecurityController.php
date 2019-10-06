@@ -37,6 +37,9 @@ class PasswordSecurityController extends Controller
     /**
      * Method for generating the 2Fa secret key.
      *
+     * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
+     *
      * @return RedirectResponse
      */
     public function generate2fasecret(): RedirectResponse
@@ -83,7 +86,7 @@ class PasswordSecurityController extends Controller
     {
         $user = auth()->user();
 
-        if (! (Hash::check($request->get('current-password'), $user->password))) {
+        if (! Hash::check($request->get('current-password'), $user->password)) {
             return back()->with('error', 'Het gegeven wachtwoord klopt niet met uw huidige wachtwoord. Probeer het opnieuw.');
         }
 
