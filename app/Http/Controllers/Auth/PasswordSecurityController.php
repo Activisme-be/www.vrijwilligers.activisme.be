@@ -50,7 +50,11 @@ class PasswordSecurityController extends Controller
     /**
      * Method for activating 2FA on the authenticated user.
      *
-     * @param  Request $request The form request class that contains all the request POST data.
+     * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
+     * @throws \PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException
+     *
+     * @param Request $request The form request class that contains all the request POST data.
      * @return RedirectResponse
      */
     public function enable2fa(Request $request): RedirectResponse

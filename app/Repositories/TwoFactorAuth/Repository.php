@@ -81,6 +81,9 @@ class Repository
     /**
      * Method for registering the 2FA secret key in the database.
      *
+     * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
+     *
      * @return PassWordSecurity
      */
     public function createSecretKey(): PasswordSecurity
