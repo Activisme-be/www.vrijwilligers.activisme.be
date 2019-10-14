@@ -5,7 +5,11 @@ Spoon is een laravel template voor onze projecten waar alleen RVB leden op moete
 Indien je geen develoiper van de organisatie bent kun je deze template gebruiken. 
 Maar hou er rekening mee dat we geen ondersteuning bieden aan mensen die geen lid zijn van onze organisatie. 
 
-Kort samengevat: Als je deze template gebruik sta je alleen voor. 
+Kort samengevat: Als je deze template gebruikt sta je alleen voor. 
+
+### Documentatie
+
+Alle nodig documentatie voor Spoon kan [hier](https://activisme-be.github.io/Spoon-documentatie/) bekeken worden.
 
 ## Installatie 
 
@@ -45,8 +49,6 @@ npm run dev
 ```
 
 De beschikbare build taken kun je terug vinden in de `package.json` file.
-
-## Colofon 
 
 ### Colofon 
 In het algemeen accepteren we geen PR's van buitenstaander in deze Repository.
