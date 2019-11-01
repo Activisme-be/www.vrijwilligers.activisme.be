@@ -35,10 +35,9 @@ class LoginCreated extends Notification implements ShouldQueue
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable Accessor variable for the user information
      * @return array
      */
-    public function via($notifiable): array
+    public function via(): array
     {
         return ['mail'];
     }
@@ -46,10 +45,9 @@ class LoginCreated extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable Accessor variable for the user information
      * @return MailMessage
      */
-    public function toMail($notifiable): MailMessage
+    public function toMail(): MailMessage
     {
         return (new MailMessage)
             ->subject('There is created an login for u on '.config('app.name'))
