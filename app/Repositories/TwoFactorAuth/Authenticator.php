@@ -2,6 +2,7 @@
 
 namespace App\Repositories\TwoFactorAuth;
 
+use PragmaRX\Google2FALaravel\Exceptions\InvalidSecretKey;
 use PragmaRX\Google2FALaravel\Support\Authenticator as BaseAuthenticator;
 
 /**
@@ -38,13 +39,15 @@ class Authenticator extends BaseAuthenticator
     /**
      * Method for getting the Google 2FA token.
      *
+     * @throws InvalidSecretKey
+     *
      * @return string
      */
     protected function getGoogle2FASecretKey()
     {
         $secret = $this->getUser()->passwordSecurity->{$this->config('otp_secret_column')};
 
-        if (is_null($secret) || empty($secret)) {
+        if ($secret === null || empty($secret)) {
             throw new InvalidSecretKey('Secret key cannot be empty.');
         }
 
