@@ -68,7 +68,7 @@ class TwoFactorResetController extends Controller
         $user = $this->getAuthenticatedUser();
 
         if ($this->authenticator->canDisplayRecoveryView()) {
-            DB::transaction(static function () use ($request, $user): void {
+            DB::transaction(static function () use ($user): void {
                 $user->passwordSecurity()->update(['reset_requested' => true]);
                 $user->notify(new TwoFactorResetNotification());
             });

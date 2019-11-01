@@ -40,10 +40,8 @@ class Authenticator extends BaseAuthenticator
      * Method for getting the Google 2FA token.
      *
      * @throws InvalidSecretKey
-     *
-     * @return string
      */
-    protected function getGoogle2FASecretKey()
+    protected function getGoogle2FASecretKey(): string
     {
         $secret = $this->getUser()->passwordSecurity->{$this->config('otp_secret_column')};
 
