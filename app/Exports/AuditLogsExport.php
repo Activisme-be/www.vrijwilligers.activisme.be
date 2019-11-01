@@ -61,7 +61,7 @@ class AuditLogsExport implements WithHeadings, ShouldAutoSize, WithEvents, WithM
     public function registerEvents(): array
     {
         return [
-            AfterSheet::class => function (AfterSheet $event): void {
+            AfterSheet::class => static function (AfterSheet $event): void {
                 $event->sheet->getDelegate()->getStyle('A1:E1')->getFont()->setBold(true);
             },
         ];

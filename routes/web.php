@@ -40,6 +40,6 @@ Route::get('/2fa-herstel', [TwoFactorResetController::class, 'index'])->name('re
 Route::post('/2fa-herstel', [TwoFactorResetController::class, 'request'])->name('recovery.2fa.request');
 Route::get('/2fa-reset', [TwoFactorResetController::class, 'handle'])->name('2fa.reset');
 
-Route::post('/2faVerify', function () {
+Route::post('/2faVerify', static function () {
     return redirect()->route('home');
 })->name('2faVerify')->middleware('2fa');
