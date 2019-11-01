@@ -15,7 +15,7 @@ class SecurityValidator extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'wachtwoord' => ['required', 'string', 'min:8', 'confirmed'],

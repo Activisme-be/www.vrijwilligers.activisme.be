@@ -17,7 +17,7 @@ class TwoFactorRecoveryRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return auth()->check() && auth()->user()->passwordSecurity()->exists();
     }
@@ -27,7 +27,7 @@ class TwoFactorRecoveryRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return ['wachtwoord' => ['required', 'string', new MatchUserPassword($this->user())]];
     }
