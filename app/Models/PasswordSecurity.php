@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Model;
 use App\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class PasswordSecurity.
+ * Class PasswordSecurity
+ *
+ * @package App\Models
  */
 class PasswordSecurity extends Model
 {
