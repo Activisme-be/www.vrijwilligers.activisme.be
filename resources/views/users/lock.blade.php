@@ -50,7 +50,8 @@
                             </div>
 
                             <div class="form-group col-12 mb-0">
-                                <textarea placeholder="Beschrijving van de rede voor de blokkering" class="form-control @error('reden', 'is-invalid')" @input('reden') rows="5">{{ old('reden') }}</textarea>
+                                <label for="reason" class="sr-only">Reden van de deactivatie</label>
+                                <textarea id="reason" placeholder="Beschrijving van de rede voor de blokkering" class="form-control @error('reden', 'is-invalid')" @input('reden') rows="5">{{ old('reden') }}</textarea>
                                 @error('reden') {{-- Validation error view partial --}}
                             </div>
                         </div>
