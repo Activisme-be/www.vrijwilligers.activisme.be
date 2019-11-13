@@ -31,19 +31,19 @@
                        <div class="form-row">
                            <div class="form-group col-6">
                                <label for="inputFirstname">Voornaam <span class="text-danger">*</span></label>
-                               <input type="text" placeholder="Uw voornaam" class="form-control @error('voornaam', 'is-invalid')" @input('voornaam')>
+                               <input id="inputFirstname" type="text" placeholder="Uw voornaam" class="form-control @error('voornaam', 'is-invalid')" @input('voornaam')>
                                @error('voornaam')
                            </div>
 
                            <div class="form-group col-6">
                                <label for="inputLastname">Achternaam <span class="text-danger">*</span></label>
-                               <input type="text" placeholder="Uw achternaam" class="form-control @error('achternaam', 'is-invalid')" @input('achternaam')>
+                               <input id="inputLastname" type="text" placeholder="Uw achternaam" class="form-control @error('achternaam', 'is-invalid')" @input('achternaam')>
                                @error('achternaam')
                            </div>
 
                            <div class="form-group col-12 mb-0">
                                <label for="inputEmail">Email adres <span class="text-danger">*</span></label>
-                               <input type="email" placeholder="Uw email adres" class="form-control @error('email', 'is-invalid')" @input('email')>
+                               <input id="inputEmail" type="email" placeholder="Uw email adres" class="form-control @error('email', 'is-invalid')" @input('email')>
                                @error('email')
                            </div>
                        </div>
