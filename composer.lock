@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "885367f9b2dbd045bacc7a603ab0f3a7",
+    "content-hash": "e9c1f2744a541f076ec41c21bd29fe8d",
     "packages": [
         {
             "name": "actb/laravel-form-helpers",
@@ -1654,6 +1654,39 @@
                 "psr-3"
             ],
             "time": "2019-08-30T09:56:44+00:00"
+        },
+        {
+            "name": "mratiebatie/laravel-repositories",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MrAtiebatie/laravel-repositories.git",
+                "reference": "ee1a9174ff81d0c52baf3a97381d65364e034ba8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MrAtiebatie/laravel-repositories/zipball/ee1a9174ff81d0c52baf3a97381d65364e034ba8",
+                "reference": "ee1a9174ff81d0c52baf3a97381d65364e034ba8",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MrAtiebatie\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sjors van Dongen",
+                    "email": "sitesjors@hotmail.com"
+                }
+            ],
+            "description": "Laravel repositories using the native Eloquent functions",
+            "time": "2019-09-11T11:56:33+00:00"
         },
         {
             "name": "nesbot/carbon",
