@@ -3,7 +3,9 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Auth\PasswordSecurityController;
 use App\Http\Controllers\Auth\TwoFactorResetController;
+use App\Http\Controllers\Notes\NoteController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Teams\TeamController;
 use App\Http\Controllers\Users\AccountController;
 
 /*
@@ -32,6 +34,12 @@ Route::get('/account/beveiliging', [AccountController::class, 'indexSecurity'])-
 Route::patch('/account/informatie', [AccountController::class, 'updateInformation'])->name('account.settings.info');
 Route::patch('/account/beveiliging', [AccountController::class, 'updateSecurity'])->name('account.settings.security');
 
+// Team routes
+Route::get('/teams', [TeamController::class, 'index'])->name('teams.index');
+
+// Notes Routes
+Route::get('/notities', [NoteController::class, 'index'])->name('notes.index');
+
 // 2FA routes
 Route::post('/gebruiker/genereer-2fa-token', [PasswordSecurityController::class, 'generate2faSecret'])->name('generate2faSecret');
 Route::post('/gebruiker/2fa', [PasswordSecurityController::class, 'enable2fa'])->name('enable2fa');
@@ -43,3 +51,4 @@ Route::get('/2fa-reset', [TwoFactorResetController::class, 'handle'])->name('2fa
 Route::post('/2faVerify', static function () {
     return redirect()->route('home');
 })->name('2faVerify')->middleware('2fa');
+
