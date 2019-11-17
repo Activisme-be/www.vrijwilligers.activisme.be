@@ -16,7 +16,7 @@
 
 <a class="nav-link" href="">
     <i class="fe fe-list mr-1"></i> Projecten
-</i>
+</a>
 
 <a class="nav-link {{ active('notes.*') }}" href="{{ route('notes.index') }}">
     <i class="fe fe-file-text mr-1"></i> Notities

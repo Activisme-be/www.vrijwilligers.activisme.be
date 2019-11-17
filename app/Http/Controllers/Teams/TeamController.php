@@ -39,6 +39,7 @@ class TeamController extends Controller
      */
     public function index(): Renderable
     {
+        $teams = $this->teamRepository->all();
         return view('teams.index', compact('teams'));
     }
 }
