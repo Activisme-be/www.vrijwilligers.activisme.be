@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Teams;
 
 use App\Http\Controllers\Controller;
-use App\Models\Team;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 
 /**
  * Class TeamController
