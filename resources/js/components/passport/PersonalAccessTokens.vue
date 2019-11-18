@@ -7,46 +7,97 @@
 <template>
     <div>
         <div>
-            <div class="card card-default">
-                <div class="card-header">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span>
-                            Personal Access Tokens
-                        </span>
+            <div class="card mb-3 card-body shadow-sm border-0">
+                <h6 class="border-bottom border-gray pb-1 mb-3">
+                    <i class="fe fe-plus text-muted mr-1"></i> Oauth API token toevoegen
+                </h6>
 
-                        <a class="action-link" tabindex="-1" @click="showCreateTokenForm">
-                            Create New Token
-                        </a>
-                    </div>
+                <div class="alert alert-danger" v-if="form.errors.length > 0">
+                    <p class="mb-0"><strong>Whoops!</strong> Something went wrong!</p>
+                    <br>
+                    <ul>
+                        <li v-for="error in form.errors">
+                            {{ error }}
+                        </li>
+                    </ul>
                 </div>
 
+                <!-- Create Token Form -->
+                <form role="form" @submit.prevent="store">
+                    <!-- Name -->
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label">Name</label>
+
+                        <div class="col-md-10">
+                            <input id="create-token-name" type="text" class="form-control" name="name" v-model="form.name">
+                        </div>
+                    </div>
+
+                    <!-- Scopes -->
+                    <div class="form-group row" v-if="scopes.length > 0">
+                        <label class="col-md-2 col-form-label">Scopes</label>
+
+                        <div class="col-md-10">
+                            <div v-for="scope in scopes">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"
+                                               @click="toggleScope(scope.id)"
+                                               :checked="scopeIsAssigned(scope.id)">
+
+                                        {{ scope.id }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-0 row">
+                        <div class="offset-2 col-10">
+                            <button type="button" class="btn btn-secondary" @click="store">
+                                <i class="fe fe-plus"></i> Toevoegen
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card shadow-sm border-0">
                 <div class="card-body">
+                    <h6 class="border-bottom border-gray pb-1 mb-3">
+                        <i class="fe fe-terminal text-muted mr-1"></i> Oauth API tokens
+                    </h6>
+
                     <!-- No Tokens Notice -->
-                    <p class="mb-0" v-if="tokens.length === 0">
-                        You have not created any personal access tokens.
-                    </p>
+                    <div class="alert border-0 mb-0 alert-info alert-important" v-if="tokens.length === 0">
+                        <i class="fe fe-info mr-2"></i>
+                        Je hebt momenteel nog geen API tokens geregistreerd.
+                    </div>
 
                     <!-- Personal Access Tokens -->
-                    <table class="table table-borderless mb-0" v-if="tokens.length > 0">
+                    <table class="table table-hover table-sm mb-0" v-if="tokens.length > 0">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th></th>
+                                <th class="border-top-0" scope="col">Name</th>
+                                <th class="border-top-0" scope="col">Oauth token ID</th>
+                                <th class="border-top-0" scope="col">&nbsp;</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <tr v-for="token in tokens">
                                 <!-- Client Name -->
-                                <td style="vertical-align: middle;">
-                                    {{ token.name }}
-                                </td>
+                                <td style="vertical-align: middle;">{{ token.name }}</td>
+                                <td><code>{{ token.id.substring(0, 20) }}...</code></td>
+                                <td style="vertical-align: middle;">{{ token.created_at }}</td>
 
                                 <!-- Delete Button -->
-                                <td style="vertical-align: middle;">
-                                    <a class="action-link text-danger" @click="revoke(token)">
-                                        Delete
-                                    </a>
+                                <td>
+                                    <span class="float-right">
+                                        <a class="action-link text-danger" @click="revoke(token)">
+                                            <i class="fe fe-trash-2 mr-1"></i> <small>Delete</small>
+                                        </a>
+                                    </span>
                                 </td>
                             </tr>
                         </tbody>
@@ -55,84 +106,14 @@
             </div>
         </div>
 
-        <!-- Create Token Modal -->
-        <div class="modal fade" id="modal-create-token" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">
-                            Create Token
-                        </h4>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-
-                    <div class="modal-body">
-                        <!-- Form Errors -->
-                        <div class="alert alert-danger" v-if="form.errors.length > 0">
-                            <p class="mb-0"><strong>Whoops!</strong> Something went wrong!</p>
-                            <br>
-                            <ul>
-                                <li v-for="error in form.errors">
-                                    {{ error }}
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Create Token Form -->
-                        <form role="form" @submit.prevent="store">
-                            <!-- Name -->
-                            <div class="form-group row">
-                                <label class="col-md-4 col-form-label">Name</label>
-
-                                <div class="col-md-6">
-                                    <input id="create-token-name" type="text" class="form-control" name="name" v-model="form.name">
-                                </div>
-                            </div>
-
-                            <!-- Scopes -->
-                            <div class="form-group row" v-if="scopes.length > 0">
-                                <label class="col-md-4 col-form-label">Scopes</label>
-
-                                <div class="col-md-6">
-                                    <div v-for="scope in scopes">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"
-                                                    @click="toggleScope(scope.id)"
-                                                    :checked="scopeIsAssigned(scope.id)">
-
-                                                    {{ scope.id }}
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- Modal Actions -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                        <button type="button" class="btn btn-primary" @click="store">
-                            Create
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Access Token Modal -->
         <div class="modal fade" id="modal-access-token" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">
+                    <div class="modal-header bg-card-footer border-bottom-0">
+                        <h5 class="token-model-title modal-title">
                             Personal Access Token
-                        </h4>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </h5>
                     </div>
 
                     <div class="modal-body">
@@ -145,7 +126,7 @@
                     </div>
 
                     <!-- Modal Actions -->
-                    <div class="modal-footer">
+                    <div class="modal-footer border-top-0 bg-card-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>

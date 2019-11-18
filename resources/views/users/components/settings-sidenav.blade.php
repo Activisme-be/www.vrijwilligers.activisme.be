@@ -15,6 +15,10 @@
         <a href="{{ route('account.security') }}" class="{{ active('account.security', 'font-weight-bold') }} list-group-item list-group-item-action">
             <i class="text-secondary fe fe-shield mr-1"></i> Account beveiliging
         </a>
+
+        <a href="{{ route('account.api-tokens') }}" class="{{ active('account.api-tokens', 'font-weight-bold') }} list-group-item list-group-item-action">
+            <i class="text-secondary fe fe-terminal mr-1"></i> API tokens
+        </a>
     </div>
 </div>
 

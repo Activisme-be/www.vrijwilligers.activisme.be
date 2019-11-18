@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\TwoFactorResetController;
 use App\Http\Controllers\Notes\NoteController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Teams\TeamController;
+use App\Http\Controllers\Users\Account\ApiTokenController;
 use App\Http\Controllers\Users\AccountController;
 
 /*
@@ -33,6 +34,7 @@ Route::get('/account', [AccountController::class, 'index'])->name('account.setti
 Route::get('/account/beveiliging', [AccountController::class, 'indexSecurity'])->name('account.security');
 Route::patch('/account/informatie', [AccountController::class, 'updateInformation'])->name('account.settings.info');
 Route::patch('/account/beveiliging', [AccountController::class, 'updateSecurity'])->name('account.settings.security');
+Route::get('/account/api-tokens', [ApiTokenController::class, 'index'])->name('account.api-tokens');
 
 // Team routes
 Route::get('/teams', [TeamController::class, 'index'])->name('teams.index');

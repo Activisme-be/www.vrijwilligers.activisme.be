@@ -11,6 +11,10 @@
 @import '~bootstrap/scss/bootstrap';
 @import "~primer-blankslate/index.scss";
 
+.token-model-title {
+    font-size: 1rem !important;
+}
+
 // List group (Side navigation)
 
 .list-group-transparent .list-group-item {

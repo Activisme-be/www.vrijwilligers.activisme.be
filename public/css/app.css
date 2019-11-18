@@ -12266,6 +12266,10 @@ a.text-dark:focus {
   box-shadow: none;
 }
 
+.token-model-title {
+  font-size: 1rem !important;
+}
+
 .list-group-transparent .list-group-item {
   background: none;
   border: 0;
