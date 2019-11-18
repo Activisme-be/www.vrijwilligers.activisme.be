@@ -21,4 +21,16 @@ trait HasCreator
     {
         return $this->hasOne(User::class);
     }
+
+    /**
+     * Method for associating an author to the model entity.
+     *
+     * @param  User $user The resource entity from given user in the application.
+     * @return $this
+     */
+    public function setAuthor(User $user): self
+    {
+        $this->creator()->associate($user)->save();
+        return $this;
+    }
 }
