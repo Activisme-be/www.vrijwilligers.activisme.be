@@ -9,6 +9,7 @@ use Cog\Laravel\Ban\Traits\Bannable;
 use Illuminate\Database\Eloquent\Relations\hasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -19,7 +20,7 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends UserRepository implements BannableContract
 {
-    use Notifiable, Bannable, HasRoles, ActivityLog, CausesActivity;
+    use Notifiable, HasApiTokens, Bannable, HasRoles, ActivityLog, CausesActivity;
 
     /**
      * The attributes that are mass assignable.
