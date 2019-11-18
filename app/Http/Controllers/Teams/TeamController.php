@@ -42,4 +42,9 @@ class TeamController extends Controller
         $teams = $this->teamRepository->all();
         return view('teams.index', compact('teams'));
     }
+
+    public function create(): Renderable
+    {
+
+    }
 }
