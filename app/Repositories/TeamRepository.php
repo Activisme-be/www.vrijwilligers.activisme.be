@@ -3,7 +3,10 @@
 namespace App\Repositories;
 
 use App\Models\Team;
+use App\Models\User;
+use App\Repositories\Interfaces\TeamInferface;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Http\Request;
 use MrAtiebatie\Repository;
 
 /**
@@ -11,7 +14,7 @@ use MrAtiebatie\Repository;
  *
  * @package App\Repositories
  */
-class TeamRepository
+class TeamRepository implements TeamInferface
 {
     use Repository;
 
@@ -40,5 +43,21 @@ class TeamRepository
     public function all(): Paginator
     {
         return $this->model->withCount('members')->paginate();
+    }
+
+    /**
+     * Method for creating an new team of volunteers in the application.
+     *
+     * @param  User     $user       The database resource entity form the given user.
+     * @param  Request  $request    The request data that comes from the form.
+     * @return Team
+     */
+    public function create(User $user, Request $request): Team
+    {
+        $owner = $this->model->findOrFail($request->verantwoordelijke);
+        $team  = $this->model->create($request->except('verantwoordelijke'))
+            ->setcreator($user)->setOwner($owner);
+
+        return $team;
     }
 }

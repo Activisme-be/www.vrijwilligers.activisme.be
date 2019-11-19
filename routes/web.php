@@ -38,6 +38,8 @@ Route::get('/account/api-tokens', [ApiTokenController::class, 'index'])->name('a
 
 // Team routes
 Route::get('/teams', [TeamController::class, 'index'])->name('teams.index');
+Route::get('/team-toevoegen', [TeamController::class, 'create'])->name('teams.create');
+Route::post('/team-toevoegen', [TeamController::class, 'store'])->name('teams.store');
 
 // Notes Routes
 Route::get('/notities', [NoteController::class, 'index'])->name('notes.index');

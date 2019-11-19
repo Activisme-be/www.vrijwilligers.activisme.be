@@ -12270,6 +12270,10 @@ a.text-dark:focus {
   font-size: 1rem !important;
 }
 
+label {
+  margin-bottom: 0.3rem !important;
+}
+
 .list-group-transparent .list-group-item {
   background: none;
   border: 0;

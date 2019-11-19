@@ -7,8 +7,8 @@
             <div class="page-subtitle">Overzicht</div>
 
             <div class="page-options d-flex">
-                <a href="" class="btn btn-shadow btn-secondary">
-                    <i class="fe fe-user-plus"></i>
+                <a href="{{ route('teams.create') }}" class="btn btn-shadow btn-secondary">
+                    <i class="fe fe-plus"></i>
                 </a>
 
                 <form method="GET" action="" class="border-0 shadow-sm form-search ml-2">

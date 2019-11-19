@@ -29,6 +29,11 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
+
         Passport::routes();
+
+        Passport::tokensCan([
+            'Teams' => 'Kan het team gedeelde van de API benaderen en gebruiken',
+        ]);
     }
 }

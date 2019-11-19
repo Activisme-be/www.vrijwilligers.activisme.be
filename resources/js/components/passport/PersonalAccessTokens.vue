@@ -26,7 +26,7 @@
                 <form role="form" @submit.prevent="store">
                     <!-- Name -->
                     <div class="form-group row">
-                        <label class="col-md-2 col-form-label">Name</label>
+                        <label class="col-md-2 col-form-label">Naam</label>
 
                         <div class="col-md-10">
                             <input id="create-token-name" type="text" class="form-control" name="name" v-model="form.name">
@@ -34,17 +34,14 @@
                     </div>
 
                     <!-- Scopes -->
-                    <div class="form-group row" v-if="scopes.length > 0">
+                    <div class="form-group mb-1 row" v-if="scopes.length > 0">
                         <label class="col-md-2 col-form-label">Scopes</label>
 
-                        <div class="col-md-10">
-                            <div v-for="scope in scopes">
+                        <div class="col-md-2" v-for="scope in scopes">
+                            <div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"
-                                               @click="toggleScope(scope.id)"
-                                               :checked="scopeIsAssigned(scope.id)">
-
+                                        <input class="mr-1" type="checkbox" @click="toggleScope(scope.id)" :checked="scopeIsAssigned(scope.id)">
                                         {{ scope.id }}
                                     </label>
                                 </div>

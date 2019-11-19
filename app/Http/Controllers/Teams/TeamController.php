@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Teams;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TeamFormRequest;
+use App\Models\Team;
+use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\TeamRepository;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class TeamController
@@ -13,22 +18,24 @@ use Illuminate\Contracts\Support\Renderable;
  */
 class TeamController extends Controller
 {
-    /**
-     * The repository that this controller is using.
-     *
-     * @var TeamRepository
-     */
+    /** @var TeamRepository $teamRepository */
     private $teamRepository;
+
+    /** @var UserRepository $userRepository */
+    private $userRepository;
 
     /**
      * TeamController constructor.
      *
      * @param  TeamRepository $teamRepository   The repository that this controller is using.
+     * @param  UserRepository $userRepository   The repository that this controller is using for the user info.
      * @return void
      */
-    public function __construct(TeamRepository $teamRepository)
+    public function __construct(TeamRepository $teamRepository, UserRepository $userRepository)
     {
         $this->middleware(['auth', '2fa', 'forbid-banned-user', 'portal:application']);
+
+        $this->userRepository = $userRepository;
         $this->teamRepository = $teamRepository;
     }
 
@@ -43,8 +50,29 @@ class TeamController extends Controller
         return view('teams.index', compact('teams'));
     }
 
+    /**
+     * Method for displaying the create view of a new team.
+     *
+     * @return Renderable
+     */
     public function create(): Renderable
     {
+        $users = $this->userRepository->all(['id', 'achternaam', 'voornaam']);
+        return view('teams.create', compact('users'));
+    }
 
+    /**
+     * Method for creating a new team of volunteers in the  application.
+     *
+     * @param  TeamFormRequest $request     The form request class that handles the validation.
+     * @return RedirectResponse
+     */
+    public function store(TeamFormRequest $request): RedirectResponse
+    {
+        $team = DB::transaction(function () use ($request): Team {
+            return $this->teamRepository->create($request->user(), $request);
+        });
+
+        return redirect()->route('teams.show', $team);
     }
 }
