@@ -4,8 +4,10 @@ namespace App\Repositories;
 
 use App\Models\Team;
 use App\Models\User;
+use App\Repositories\Eloquent\UserRepository as UsersRepository;
 use App\Repositories\Interfaces\TeamInferface;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use MrAtiebatie\Repository;
 
@@ -18,21 +20,22 @@ class TeamRepository implements TeamInferface
 {
     use Repository;
 
-    /**
-     * The model being queried.
-     *
-     * @var \Illuminate\Database\Eloquent\Model
-     */
+    /** @var Model $model    The model being queried. */
     protected $model;
+
+    /** @var UsersRepository $user */
+    private $userRepository;
 
     /**
      * TeamRepository constructor.
      *
+     * @param  UsersRepository
      * @return void
      */
-    public function __construct()
+    public function __construct(UsersRepository $userRepository)
     {
         $this->model = app(Team::class);
+        $this->userRepository = $userRepository;
     }
 
     /**

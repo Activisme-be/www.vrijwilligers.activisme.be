@@ -19,7 +19,7 @@ trait HasCreator
      */
     public function creator(): BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -28,7 +28,7 @@ trait HasCreator
      * @param  User $user The resource entity from given user in the application.
      * @return $this
      */
-    public function setAuthor(User $user): self
+    public function setCreator(User $user): self
     {
         $this->creator()->associate($user)->save();
         return $this;

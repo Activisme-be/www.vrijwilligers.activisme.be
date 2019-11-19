@@ -38,4 +38,16 @@ class UserRepository implements UserRepositoryInterface
     {
         return $this->model->all($columns);
     }
+
+    /**
+     * Method for finding an user in the application.
+     *
+     * @param  mixed $id        THe unique user identifier in the application storage.
+     * @param  array $columns   The olcumns u want to select for the user.
+     * @return mixed
+     */
+    public function find($id, array $columns = ['*'])
+    {
+        return $this->model->find($id, $columns);
+    }
 }

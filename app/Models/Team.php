@@ -25,8 +25,6 @@ class Team extends Model
     /**
      * Data relation for all the volunteers that are attached to the team.
      *
-     * @todo Register this in a trait.
-     *
      * @return BelongsToMany
      */
     public function members(): BelongsToMany
