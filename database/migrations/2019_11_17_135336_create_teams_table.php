@@ -20,7 +20,7 @@ class CreateTeamsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('creator_id')->nullable();
             $table->unsignedBigInteger('owner_id')->nullable();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->text('description');
             $table->timestamps();
 

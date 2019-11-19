@@ -28,5 +28,5 @@ interface TeamInferface
      * @param  Request $request   The data that the user has filled in the form.
      * @return Team
      */
-    public function create(User $user, Request $request): Team;
+    public function store(User $user, Request $request): Team;
 }

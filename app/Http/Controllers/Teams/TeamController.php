@@ -70,8 +70,10 @@ class TeamController extends Controller
     public function store(TeamFormRequest $request): RedirectResponse
     {
         $team = DB::transaction(function () use ($request): Team {
-            return $this->teamRepository->create($request->user(), $request);
+            return $this->teamRepository->store($request->user(), $request);
         });
+
+        dd($team);
 
         return redirect()->route('teams.show', $team);
     }

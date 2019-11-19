@@ -33,7 +33,7 @@
                     <div class="form-group col-4">
                         <label for="owner">Verantwoordelijke <span class="text-danger">*</span></label>
 
-                        <select id="owner" class="custom-select" @error('verantwoordelijke', 'is-invalid')>
+                        <select id="owner" class="custom-select @error('verantwoordelijke', 'is-invalid')" @input('verantwoordelijke')>
                             <option value="">-- Selecteer verantwoordelijke --</option>
 
                             @foreach ($users as $user) {{-- loop trough the applications users --}}
@@ -48,7 +48,7 @@
 
                     <div class="form-group mb-0 col-12">
                         <label for="description">Beschrijving</label>
-                        <textarea id="description" class="form-control" rows="4" placeholder="Korte beschrijving van het team">{{ old('description') }}</textarea>
+                        <textarea id="description" class="form-control" rows="4" @input('description') placeholder="Korte beschrijving van het team">{{ old('description') }}</textarea>
                     </div>
                 </div>
             </form>

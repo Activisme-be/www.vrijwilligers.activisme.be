@@ -52,12 +52,11 @@ class TeamRepository implements TeamInferface
      * @param  Request  $request    The request data that comes from the form.
      * @return Team
      */
-    public function create(User $user, Request $request): Team
+    public function store(User $user, Request $request): Team
     {
-        $owner = $this->model->findOrFail($request->verantwoordelijke);
-        $team  = $this->model->create($request->except('verantwoordelijke'))
-            ->setcreator($user)->setOwner($owner);
+        $owner = $this->userRepository->find($request->verantwoordelijke);
 
-        return $team;
+        return $this->model->create($request->except('verantwoordelijke'))
+            ->setCreator($user)->setOwner($owner);
     }
 }
