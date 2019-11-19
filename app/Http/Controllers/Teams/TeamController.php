@@ -73,8 +73,6 @@ class TeamController extends Controller
             return $this->teamRepository->store($request->user(), $request);
         });
 
-        dd($team);
-
         return redirect()->route('teams.show', $team);
     }
 }
