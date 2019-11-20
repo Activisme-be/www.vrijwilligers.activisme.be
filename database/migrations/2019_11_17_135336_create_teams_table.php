@@ -28,6 +28,17 @@ class CreateTeamsTable extends Migration
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('creator_id')->references('id')->on('users')->onDelete('set null');
         });
+
+        Schema::create('team_members', static function (Blueprint $table): void {
+            $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBigInteger('team_id')->index();
+            $table->timestamp('member_since');
+            $table->timestamp('deactivated_at')->nullable();
+
+            // Foreign keys & index
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+        });
     }
 
     /**
@@ -37,6 +48,7 @@ class CreateTeamsTable extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('team_members');
         Schema::dropIfExists('teams');
     }
 }
