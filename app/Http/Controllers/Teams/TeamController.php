@@ -75,4 +75,16 @@ class TeamController extends Controller
 
         return redirect()->route('teams.show', $team);
     }
+
+    /**
+     * Method to display the team information in the application.
+     *
+     * @param  Team $team The resource entity from the given team.
+     * @return Renderable
+     */
+    public function show(Team $team): Renderable
+    {
+        $members = $this->teamRepository->getMembers($team);
+        return view('teams.show', compact('team', 'members'));
+    }
 }

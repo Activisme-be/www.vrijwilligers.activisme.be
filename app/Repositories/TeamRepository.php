@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Repositories\Eloquent\UserRepository as UsersRepository;
 use App\Repositories\Interfaces\TeamInferface;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use MrAtiebatie\Repository;
@@ -61,5 +62,16 @@ class TeamRepository implements TeamInferface
 
         return $this->model->create($request->except('verantwoordelijke'))
             ->setCreator($user)->setOwner($owner);
+    }
+
+    /**
+     * Method for getting all the members that are assigned to the given team in the application.
+     *
+     * @param  Team $team The resource entity from the given team.
+     * @return Collection
+     */
+    public function getMembers(Team $team): Collection
+    {
+        return $team->members;
     }
 }

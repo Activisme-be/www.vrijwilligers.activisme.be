@@ -43,6 +43,24 @@
                     </thead>
                     <tbody>
                         @forelse ($teams as $team)
+                            <tr>
+                                <td>{{ $team->name }}</td>
+                                <td class="font-weight-bold">{{ ucfirst($team->owner->name) ?? 'Geen' }}</td>
+                                <td class="align-middle">{{ $team->members_count }} leden</td>
+                                <td>{{ $team->created_at }} <small class="text-muted">({{ $team->created_at->diffForHumans() }})</small></td>
+
+                                <td> {{-- Options --}}
+                                    <span class="float-right">
+                                        <a href="{{ route('teams.show', $team) }}" class="text-decoration-none text-secondary">
+                                            <i class="fe fe-eye"></i>
+                                        </a>
+
+                                        <a href="" class="text-decoration-none text-danger ml-1">
+                                            <i class="fe fe-trash-2"></i>
+                                        </a>
+                                    </span>
+                                </td> {{-- /// Options --}}
+                            </tr>
                         @empty {{-- There are no volunteer teams in the application --}}
                             <tr>
                                 <td colspan="5" class="text-muted">
