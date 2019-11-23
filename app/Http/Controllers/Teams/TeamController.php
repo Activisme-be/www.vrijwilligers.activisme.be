@@ -84,7 +84,7 @@ class TeamController extends Controller
      */
     public function show(Team $team): Renderable
     {
-        $members = $this->teamRepository->getMembers($team);
-        return view('teams.show', compact('team', 'members'));
+        $users = $this->userRepository->all(['id', 'achternaam', 'voornaam']);
+        return view('teams.show', compact('team', 'users'));
     }
 }
