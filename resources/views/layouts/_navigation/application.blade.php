@@ -14,7 +14,7 @@
     <i class="fe fe-calendar mr-1"></i> Evenementen
 </a>
 
-<a class="nav-link" href="">
+<a class="nav-link" href="{{ route('projects.index') }}">
     <i class="fe fe-list mr-1"></i> Projecten
 </a>
 

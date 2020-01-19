@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\PasswordSecurityController;
 use App\Http\Controllers\Auth\TwoFactorResetController;
 use App\Http\Controllers\Notes\NoteController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Projects\ProjectController;
+use App\Http\Controllers\Teams\MembersController;
 use App\Http\Controllers\Teams\TeamController;
 use App\Http\Controllers\Users\Account\ApiTokenController;
 use App\Http\Controllers\Users\AccountController;
@@ -42,8 +44,14 @@ Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show')
 Route::get('/team-toevoegen', [TeamController::class, 'create'])->name('teams.create');
 Route::post('/team-toevoegen', [TeamController::class, 'store'])->name('teams.store');
 
+// Member routes
+Route::get('/{team}/leden', [MembersController::class, 'index'])->name('teams.members.show');
+
 // Notes Routes
 Route::get('/notities', [NoteController::class, 'index'])->name('notes.index');
+
+// Project routes
+Route::get('/projecten', [ProjectController::class, 'index'])->name('projects.index');
 
 // 2FA routes
 Route::post('/gebruiker/genereer-2fa-token', [PasswordSecurityController::class, 'generate2faSecret'])->name('generate2faSecret');

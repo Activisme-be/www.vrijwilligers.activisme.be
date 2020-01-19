@@ -30,13 +30,13 @@ class CreateTeamsTable extends Migration
         });
 
         Schema::create('team_members', static function (Blueprint $table): void {
-            $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBigInteger('volunteer_id')->index();
             $table->unsignedBigInteger('team_id')->index();
             $table->timestamp('member_since');
             $table->timestamp('deactivated_at')->nullable();
 
             // Foreign keys & index
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('volunteer_id')->references('id')->on('volunteers')->onDelete('cascade');
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
         });
     }

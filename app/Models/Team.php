@@ -52,7 +52,7 @@ class Team extends Model
      */
     public function members(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'team_members')
+        return $this->belongsToMany(Volunteer::class, 'team_members')
             ->withPivot(['member_since', 'deactivated_at']);
     }
 }

@@ -12359,7 +12359,7 @@ label {
 }
 
 .form-search {
-  width: 225px;
+  width: 280px !important;
 }
 
 .dropdown-header {
