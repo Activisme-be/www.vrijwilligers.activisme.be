@@ -89,12 +89,14 @@ label {
     color: #aaa;
 }
 
-.badge-online {
+.badge-online,
+.badge-active{
     color: #38a160;
     background-color: #f0fff4;
 }
 
-.badge-offline {
+.badge-offline,
+.badge-non-active {
     color: #e53e3e;
     background-color: #fff5ff;
 }

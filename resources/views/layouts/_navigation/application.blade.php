@@ -2,7 +2,7 @@
     <i class="fe fe-home mr-1 text-secondary"></i> Dashboard
 </a>
 
-<a class="nav-link" href="">
+<a class="nav-link {{ active('volunteer.*') }}" href="{{ route('volunteer.index') }}">
     <i class="fe fe-users text-secondary mr-1"></i> Vrijwilligers
 </a>
 

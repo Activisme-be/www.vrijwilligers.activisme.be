@@ -20,6 +20,6 @@ class ProjectRepository
      */
     public function getAllProjects(): Paginator
     {
-       return Project::paginate();
+        return Project::paginate();
     }
 }

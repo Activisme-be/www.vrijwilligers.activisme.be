@@ -18,6 +18,7 @@ class CreateVolunteersTable extends Migration
     {
         Schema::create('volunteers', static function (Blueprint $table): void {
             $table->bigIncrements('id');
+            $table->boolean('is_active')->default(true);
             $table->string('name');
             $table->string('phone_number');
             $table->string('email')->unique();

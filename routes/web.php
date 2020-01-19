@@ -10,6 +10,7 @@ use App\Http\Controllers\Teams\MembersController;
 use App\Http\Controllers\Teams\TeamController;
 use App\Http\Controllers\Users\Account\ApiTokenController;
 use App\Http\Controllers\Users\AccountController;
+use App\Http\Controllers\VolunteerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,10 @@ Route::get('/team-toevoegen', [TeamController::class, 'create'])->name('teams.cr
 Route::post('/team-toevoegen', [TeamController::class, 'store'])->name('teams.store');
 Route::match(['get', 'delete'], '/teams/{team}/verwijderen', [TeamController::class, 'destroy'])->name('teams.delete');
 
+// Volunteer routes
+Route::get('/vrijwilligers/{filter?}', [VolunteerController::class, 'index'])->name('volunteer.index');
+Route::get('nieuwe-vrijwilliger', [VolunteerController::class, 'create'])->name('volunteer.create');
+
 // Member routes
 Route::get('/{team}/leden', [MembersController::class, 'index'])->name('teams.members.show');
 
@@ -65,4 +70,3 @@ Route::get('/2fa-reset', [TwoFactorResetController::class, 'handle'])->name('2fa
 Route::post('/2faVerify', static function () {
     return redirect()->route('home');
 })->name('2faVerify')->middleware('2fa');
-
