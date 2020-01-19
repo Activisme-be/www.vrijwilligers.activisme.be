@@ -12270,6 +12270,14 @@ a.text-dark:focus {
   font-size: 1rem !important;
 }
 
+.icon-navbar {
+  color: #718096;
+}
+
+.navbar {
+  border-top: 3px solid #b9210c;
+}
+
 label {
   margin-bottom: 0.3rem !important;
 }
@@ -12415,11 +12423,29 @@ html {
   width: 100%;
   height: 60px;
   line-height: 60px;
-  background-color: #343a40;
+  background-color: transparent;
 }
 
-.copyright {
-  color: #fff;
+.footer-text {
+  color: #56677b;
+}
+
+.icon-pl-1 {
+  margin-left: 0.2rem !important;
+}
+
+.dot {
+  margin-left: 0.25rem !important;
+  margin-right: 0.25rem !important;
+  height: 5px;
+  width: 5px;
+  background-color: #8a9aad;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.footer-link {
+  color: #6e7687;
 }
 
 .bg-navbar {

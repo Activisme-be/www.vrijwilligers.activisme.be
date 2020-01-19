@@ -9,6 +9,7 @@ use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\TeamRepository;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -18,11 +19,8 @@ use Illuminate\Support\Facades\DB;
  */
 class TeamController extends Controller
 {
-    /** @var TeamRepository $teamRepository */
-    private $teamRepository;
-
-    /** @var UserRepository $userRepository */
-    private $userRepository;
+    private TeamRepository $teamRepository;
+    private UserRepository $userRepository;
 
     /**
      * TeamController constructor.
@@ -86,5 +84,22 @@ class TeamController extends Controller
     {
         $users = $this->userRepository->all(['id', 'achternaam', 'voornaam']);
         return view('teams.show', compact('team', 'users'));
+    }
+
+    /**
+     * Method for deleting a team in the application.
+     *
+     * @param  Request $request  The request instance that holds all the request information.
+     * @param  Team    $team     The resource entity from the given team.
+     * @return Renderable|RedirectResponse
+     */
+    public function destroy(Request $request, Team $team)
+    {
+        if ($request->isMethod('GET')) {
+            return view('teams.delete', compact('team'));
+        }
+
+        $this->teamRepository->delete($team);
+        return redirect()->route('teams.index');
     }
 }

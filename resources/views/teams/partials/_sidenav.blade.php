@@ -9,7 +9,7 @@
         <a href="{{ route('teams.members.show', $team) }}" class="list-group-item list-group-item-action {{ active('teams.members.show', 'font-weight-bold') }}">
             <i class="fe fe-users mr-2 text-secondary"></i> Team leden
         </a>
-        <a href="" class="list-group-item list-group-item-action">
+        <a href="{{ route('teams.delete', $team) }}" class="{{ active('teams.delete', 'font-weight-bold') }} list-group-item list-group-item-action">
             <i class="fe fe-trash-2 mr-2 text-danger"></i> Team verwijderen
         </a>
     </div>

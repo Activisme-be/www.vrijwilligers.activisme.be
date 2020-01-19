@@ -74,4 +74,14 @@ class TeamRepository implements TeamInferface
     {
         return $team->members;
     }
+
+    public function delete(Team $team): void
+    {
+        $team->delete();
+        auth()->user()->logActivity($team, 'Teams', "Heeft {$team->name} verwijderd als team in de applicatie");
+
+        if (Team::count() > 0) {
+            flash()->success("{$team->name} is verwijderd als team uit de applicatie");
+        }
+    }
 }

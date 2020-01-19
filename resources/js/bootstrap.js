@@ -46,4 +46,9 @@ $(document).ready(function() {
     $('div.alert').not('.alert-important').delay(4200).fadeOut(350, function() {
         $(this).alert('close');
     });
+
+    $('#toTop').on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop:0}, '300');
+    });
 });

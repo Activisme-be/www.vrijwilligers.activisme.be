@@ -43,6 +43,7 @@ Route::get('/teams', [TeamController::class, 'index'])->name('teams.index');
 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 Route::get('/team-toevoegen', [TeamController::class, 'create'])->name('teams.create');
 Route::post('/team-toevoegen', [TeamController::class, 'store'])->name('teams.store');
+Route::match(['get', 'delete'], '/teams/{team}/verwijderen', [TeamController::class, 'destroy'])->name('teams.delete');
 
 // Member routes
 Route::get('/{team}/leden', [MembersController::class, 'index'])->name('teams.members.show');

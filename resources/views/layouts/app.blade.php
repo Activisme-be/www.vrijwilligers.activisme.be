@@ -40,12 +40,12 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="mailto:tim@activsme.be">
-                            <i class="fe fe-help-circle mr-1"></i> Help
+                            <i class="fe icon-navbar fe-help-circle mr-1"></i> Help
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('notifications.index') }}">
-                            <i class="fe fe-bell mr-1"></i>
+                            <i class="fe icon-navbar fe-bell mr-1"></i>
                             <span style="margin-top: -.25rem;" class="badge badge-pill align-middle badge-danger">
                                 {{ $currentUser->unreadNotifications()->count() }}
                             </span>
@@ -54,7 +54,7 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fe fe-user mr-1"></i> {{ $currentUser->name }}
+                            <i class="fe icon-navbar fe-user mr-1"></i> {{ $currentUser->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdown">
@@ -108,10 +108,12 @@
 
         <footer class="footer">
             <div class="container-fluid">
-                <span class="copyright">&copy; {{ date('Y') }}, {{ config('app.name') }}</span>
+                <span class="footer-text">&copy; 2019 - {{ date('Y') }} <span class="ml-1">{{ config('app.name') }}</span></span>
 
                 <div class="float-right">
-                    <span class="copyright">v1.0.0</span>
+                    <a class="text-decoration-none footer-link" id="toTop" href="#">
+                        <i class="fe font-weight-bold fe-chevrons-up icon-pl-1"></i> Naar boven
+                    </a>
                 </div>
             </div>
         </footer>
