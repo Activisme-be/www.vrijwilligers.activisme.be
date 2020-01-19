@@ -42,9 +42,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /**
  * 3th party scripts
  */
+require('bootstrap-datepicker');
+require('bootstrap-datepicker/js/locales/bootstrap-datepicker.nl');
+
 $(document).ready(function() {
     $('div.alert').not('.alert-important').delay(4200).fadeOut(350, function() {
         $(this).alert('close');
+    });
+
+    $('.datepicker').datepicker({
+        autoclose: true, language: 'nl', orientation: 'bottom', format: 'dd-mm-yyyy',
     });
 
     $('#toTop').on('click', function(e) {

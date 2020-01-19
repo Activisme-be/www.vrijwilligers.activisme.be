@@ -34,7 +34,7 @@
                 <table class="table table-sm mb-0 table-hover">
                     <thead>
                         <tr>
-                            <th class="border-top-0" scope="col">Naam</th>
+                            <th class="border-top-0" scope="col">Team</th>
                             <th class="border-top-0" scope="col">Verantwoordelijke</th>
                             <th class="border-top-0" scope="col">Aantal leden</th>
                             <th class="border-top-0" scope="col">Aangemaakt op</th>
