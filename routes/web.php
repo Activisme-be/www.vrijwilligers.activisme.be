@@ -53,6 +53,7 @@ Route::post('nieuwe-vrijwilliger', [VolunteerController::class, 'store'])->name(
 
 // Member routes
 Route::get('/{team}/leden', [MembersController::class, 'index'])->name('teams.members.show');
+Route::get('/{team}/lid-toevoegen', [MembersController::class, 'create'])->name('teams.members.create');
 
 // Notes Routes
 Route::get('/notities', [NoteController::class, 'index'])->name('notes.index');

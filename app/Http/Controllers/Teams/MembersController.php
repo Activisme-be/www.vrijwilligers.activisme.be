@@ -34,4 +34,9 @@ class MembersController extends Controller
     {
         return view('teams.members.index', ['members' => $team->members()->paginate(), 'team' => $team]);
     }
+
+    public function create(Team $team): Renderable
+    {
+        return view('teams.members.create', compact('team'));
+    }
 }

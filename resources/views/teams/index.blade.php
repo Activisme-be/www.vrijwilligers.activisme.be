@@ -55,6 +55,10 @@
                                             <i class="fe fe-eye"></i>
                                         </a>
 
+                                        <a href="{{ route('teams.members.create', $team) }}" class="text-secondary text-decoration-none ml-3">
+                                            <i class="fe fe-user-plus"></i>
+                                        </a>
+
                                         <a href="{{ route('teams.delete', $team) }}" class="text-decoration-none text-danger ml-1">
                                             <i class="fe fe-trash-2"></i>
                                         </a>

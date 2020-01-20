@@ -7,7 +7,7 @@
             <div class="page-subtitle">Leden overzicht van {{ ucfirst($team->name) }}</div>
 
             <div class="page-options d-flex">
-                <a href="" class="btn btn-secondary shadow-sm">
+                <a href="{{ route('teams.members.create', $team) }}" class="btn btn-secondary shadow-sm">
                     <i class="fe fe-plus"></i>
                 </a>
 
@@ -40,6 +40,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col" class="border-top-0">Naam</th>
+                                    <th scope="col" class="border-top-0">Functie</th>
                                     <th scope="col" class="border-top-0">Status</th>
                                     <th scope="col" class="border-top-0">Email</th>
                                     <th scope="col" class="border-top-0">Lid sinds</th>
@@ -53,7 +54,7 @@
                                     </tr>
                                 @empty {{-- There are no memebers found --}}
                                     <tr>
-                                        <td colspan="5" class="text-muted">
+                                        <td colspan="6" class="text-muted">
                                             <i class="fe fe-info mr-2"></i> Er zijn momenteel nog geen vrijwilligers als lid onder dit team.
                                         </td>
                                     </tr>

@@ -51,7 +51,7 @@
                 <hr class="mt-0">
 
                 <div class="form-row">
-                    <div class="form-group col-12">
+                    <div class="form-group col-12 mb-0">
                         <label for="information">Extra informatie</label>
                         <textarea placeholder="Extra informatie omtrent de vrijwilliger" @input('extra_information') class="form-control" id="information" rows="5">{{ old('extra_information') }}</textarea>
                     </div>
