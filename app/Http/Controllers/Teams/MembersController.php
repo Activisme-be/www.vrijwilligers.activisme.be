@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Teams;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Teams\MemberAttachFormRequest;
 use App\Models\Team;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -38,5 +40,10 @@ class MembersController extends Controller
     public function create(Team $team): Renderable
     {
         return view('teams.members.create', compact('team'));
+    }
+
+    public function store(MemberAttachFormRequest $request): RedirectResponse
+    {
+
     }
 }
