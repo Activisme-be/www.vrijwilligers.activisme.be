@@ -48,7 +48,8 @@ Route::match(['get', 'delete'], '/teams/{team}/verwijderen', [TeamController::cl
 
 // Volunteer routes
 Route::get('/vrijwilligers/{filter?}', [VolunteerController::class, 'index'])->name('volunteer.index');
-Route::get('nieuwe-vrijwilliger', [VolunteerController::class, 'create'])->name('volunteer.create');
+Route::get('/nieuwe-vrijwilliger', [VolunteerController::class, 'create'])->name('volunteer.create');
+Route::post('nieuwe-vrijwilliger', [VolunteerController::class, 'store'])->name('volunteer.store');
 
 // Member routes
 Route::get('/{team}/leden', [MembersController::class, 'index'])->name('teams.members.show');

@@ -15,7 +15,7 @@
     </div>
 
     <div class="container-fluid pb-3">
-        <form action="" method="POST" class="card border-0 shadow-sm">
+        <form action="{{ route('volunteer.store') }}" method="POST" class="card border-0 shadow-sm">
             @csrf
 
             <div class="card-body">
@@ -52,7 +52,8 @@
 
                 <div class="form-row">
                     <div class="form-group col-12">
-
+                        <label for="information">Extra informatie</label>
+                        <textarea placeholder="Extra informatie omtrent de vrijwilliger" @input('extra_information') class="form-control" id="information" rows="5">{{ old('extra_information') }}</textarea>
                     </div>
                 </div>
             </div>

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VolunteerFormRequest;
 use Illuminate\Contracts\Support\Renderable;
 use App\Repositories\Eloquent\VolunteersRepository;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class VolunteerController
@@ -28,5 +31,14 @@ class VolunteerController extends Controller
     public function create(): Renderable
     {
         return view('volunteers.create');
+    }
+
+    public function store(VolunteerFormRequest $request): RedirectResponse
+    {
+        DB::transaction(function () use ($request): void {
+            $this->volunteerRepository->store($request);
+        });
+
+        return redirect()->route('volunteer.index');
     }
 }

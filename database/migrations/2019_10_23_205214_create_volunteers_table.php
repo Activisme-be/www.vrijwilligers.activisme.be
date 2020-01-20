@@ -24,7 +24,7 @@ class CreateVolunteersTable extends Migration
             $table->string('email')->unique();
             $table->date('birth_date');
             $table->text('extra_information');
-            $table->timestamp('deactivated_at');
+            $table->timestamp('deactivated_at')->nullable();
             $table->timestamps();
         });
     }
