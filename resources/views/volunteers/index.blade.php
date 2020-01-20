@@ -40,6 +40,8 @@
                 <i class="fe fe-users text-muted mr-1"></i> Overzicht van alle vrijwilligers
             </h6>
 
+            @include ('flash::message')
+
             <div class="table-responsive">
                 <table class="table table-sm mb-0 table-hover">
                     <thead>
@@ -68,7 +70,13 @@
 
                                 <td> {{-- Options --}}
                                     <span class="float-right">
-                                        {{-- TODO: Define options --}}
+                                        <a href="" class="text-decoration-none text-muted">
+                                            <i class="fe fe-eye"></i>
+                                        </a>
+
+                                        <a href="" class="text-decoration-none text-danger ml-1">
+                                            <i class="fe fe-trash-2"></i>
+                                        </a>
                                     </span>
                                 </td> {{-- /// Options --}}
                             </tr>
